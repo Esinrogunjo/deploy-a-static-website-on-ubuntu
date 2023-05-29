@@ -1,0 +1,12 @@
+server {
+    listen 80;
+    server_name agas.bitsmart.ng;
+
+    root /var/www/agas.bitsmart.ng;
+
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}

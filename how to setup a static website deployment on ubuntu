@@ -1,0 +1,30 @@
+- create ubuntu vm with public IP, and allow ssh login either with new public key or exisitng public key
+- Grab your public ip, and use it to create your A and CNAME(alias) record (wait till after propagation: continue with other setup)
+- ssh into the ubuntu machine, update and upgrade it
+- install nginx
+- download your static app files (to be deployed)
+- create dir/folder with your app uri as name e.g agas.photogallery.com, put your app files inside , and move to them to your www directorty (/var/www/).
+- get your nginx configuration file ready : see sample below
+
+server {
+listen 80;
+server_name your_domain.com;
+
+    root /path/to/your/website;
+
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+}
+
+- after editing your confi file(s), copy them to /etc/nginx/sites-available : e.g(sudo cp agas.photogallery.com /etc/nginx/sites-availanle): use sudo to copy them because they need root permission, and if you used move , you will need to change file ownership(chown) to root for your config file(s).
+
+- create soft link of each config file to /etc/nginx/site-enabled/ (sudo ln -s /etc/nginx/sites-available/ agas.photogallery.com /etc/nginx/sites-enabled)
+- check your url on the browser , your app should be up now (but not secured)
+- now we are going to install certbot for ssl (sudo apt install certbot python3-certbot-nginx -y )
+- after installation, generate/request an ssl for your app based on your server(nginx) configuration: sudo certbot --nginx
+- follow the prompt and generte your cert(s)
+- Goodluck
