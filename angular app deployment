@@ -1,0 +1,20 @@
+create server, update, upgrade, install nginx, start and enable it , install git, install node (digital ocean), check your node and npm version,
+
+- sudo apt-get install curl
+- curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+- sudo apt-get install -y nodejs
+- node -v
+- npm -v
+- sudo npm install -g @angular/cli
+  you may want to install angular cli and yarn is needed.
+
+- configure domain
+  install certbot,
+- git clone your app
+- move your app to /var/www
+- check if there is readme to know how to install dependecy(yarn install or npm install)
+- if you check the app dir/folder you will see that there is not dist/build dir, what you'll do is to build the app
+- npm run build or yarn build or ng build
+- create config file at /etc/nginx/sites-available, and soft link it to sites-enables
+- install snap, and then certbot, but I don't think snap is neccessary. ask why
+- if after you deployed/create that app and still want to create a new one, you need to use (sudo certbot --nginx domain(i.e. modern-app.bitsmart.com), for it generate ssl for that specific domain)
